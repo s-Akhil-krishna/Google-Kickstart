@@ -1,0 +1,21 @@
+    #sum([1,2,....x]) = P
+from functools import lru_cache
+num = lambda : int(input())
+numList = lambda: list(map(int,input().split()))
+
+
+
+T = num()
+for t in range(1,T+1):
+    N,K,P = numList()
+    prefix = [[0] for _ in range(N)]
+    for i in range(N):
+        A = numList()
+        for x in A:
+            prefix[i].append(x+prefix[i][-1])
+    @lru_cache(None)
+    def func(cur,P,K):
+        if cur == N or P==0:return 0
+        return max(func(cur+1,P-i,K)+prefix[cur][i] for i in range(min(P,K)+1))
+    res = func(0,P,K)
+    print("Case #{}: {}".format(t,res))

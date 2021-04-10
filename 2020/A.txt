@@ -1,0 +1,14 @@
+num = lambda : int(input())
+numList = lambda: list(map(int,input().split()))
+
+T = num()
+for t in range(1,T+1):
+    N,B = numList()
+    A = numList()
+    A.sort()
+    res = 0
+    for x in A:
+        if x <= B:
+            res += 1
+            B -= x
+    print("Case #{}: {}".format(t,res))

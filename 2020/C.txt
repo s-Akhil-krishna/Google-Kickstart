@@ -1,0 +1,25 @@
+# cook your dish here
+
+from math import ceil
+from functools import lru_cache
+num = lambda : int(input())
+numList = lambda: list(map(int,input().split()))
+T = num()
+for t in range(1,T+1):
+    N,K = numList()
+    A = numList()
+    
+    lb,rb = 1,A[-1]-A[0]
+    while lb<rb:
+        mb = lb + rb >> 1
+        k2 = 0
+        for i in range(1,N):
+            d = A[i] - A[i-1]
+            k2 += int(ceil(d/mb)) - 1
+        if k2 <= K:
+            rb = mb
+        else:
+            lb = mb + 1
+    print("Case #{}: {}".format(t,lb))
+    
+        
